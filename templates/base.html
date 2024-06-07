@@ -27,7 +27,11 @@
             <div class="container">
                 <a class="navbar-brand" href={% url "inicio" %}>Inicio</a>
                 <a class="navbar-brand" href={% url "probando" %}>Probando</a>
-                <a class="navbar-brand" href={% url "crear_auto" "Fiat" "Duna"%}>Creacion Auto</a>
+                {% comment %} V1 {% endcomment %}
+                {% comment %} <a class="navbar-brand" href={% url "crear_auto" "Fiat" "Duna"%}>Creacion Auto</a> {% endcomment %}
+                {% comment %} V2 {% endcomment %}
+                <a class="navbar-brand" href={% url "crear_auto_v2" %}>Crear Auto</a>
+                <a class="navbar-brand" href={% url "autos" %}>Autos</a>
                 {% comment %} <a class="btn btn-primary" href="#signup">Sign Up</a> {% endcomment %}
             </div>
         </nav>

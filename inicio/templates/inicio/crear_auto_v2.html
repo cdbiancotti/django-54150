@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Crear Auto
+{% endblock title_head %}
+
+{% block h1_header %}
+PASASTE POR ACA
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action={% url "crear_auto_v2" %} method="POST">
+    {% csrf_token %}
+
+    {% comment %} <p>
+        Marca:
+        <input type="text" name="marca" placeholder="Marca">
+    </p>
+    <p>
+        Modelo:
+        <input type="text" name="modelo">
+    </p> {% endcomment %}
+
+    {{formulario}}
+
+    <input type="submit" value="Enviar">
+    {% comment %} <button>Enviar</button> {% endcomment %}
+
+</form>
+
+{% endblock main %}

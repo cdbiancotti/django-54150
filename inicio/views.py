@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
 
 from django.http import HttpResponse
@@ -6,6 +6,7 @@ from django.template import Template, Context, loader
 
 from inicio.models import Auto
 # from .models import Auto
+from inicio.forms import CrearAutoFormulario
 
 import random
 
@@ -87,3 +88,40 @@ def crear_auto(request, marca, modelo):
     auto = Auto(marca=marca, modelo=modelo)
     auto.save()
     return render(request, 'auto_templates/creacion.html', {"auto": auto})
+
+def crear_auto_v2(request):
+    
+    # v1
+    # print('Valor de la request: ', request)
+    # print('Valor de GET: ', request.GET)
+    # print('Valor de POST: ', request.POST)
+    
+    # if request.method == 'POST':
+    #     auto = Auto(marca=request.POST.get('marca'), modelo=request.POST.get('modelo'))
+    #     auto.save()
+    
+    # return render(request, 'inicio/crear_auto_v2.html')
+
+    # v2
+    print('Valor de la request: ', request)
+    print('Valor de GET: ', request.GET)
+    print('Valor de POST: ', request.POST)
+    
+    formulario = CrearAutoFormulario()
+    
+    if request.method == 'POST':
+        formulario = CrearAutoFormulario(request.POST)
+        if formulario.is_valid():
+            datos = formulario.cleaned_data
+            auto = Auto(marca=datos.get('marca'), modelo=datos.get('modelo'))
+            auto.save()
+            return redirect('autos')
+
+    return render(request, 'inicio/crear_auto_v2.html', {'formulario': formulario})
+
+def autos(request):
+    
+    autos = Auto.objects.all()
+    
+    return render(request, 'inicio/autos.html', {'autos': autos})
+    

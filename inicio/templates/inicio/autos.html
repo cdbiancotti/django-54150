@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Autos
+{% endblock title_head %}
+
+{% block h1_header %}
+Listado de autos
+{% endblock h1_header %}
+
+{% block main %}
+
+{% if autos %}
+    <ul>    
+        {% for auto in autos %}
+        <li>{{auto}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p>No hay autos creados.</p>
+{% endif %}
+
+{% endblock main %}
