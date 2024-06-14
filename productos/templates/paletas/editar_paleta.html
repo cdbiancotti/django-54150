@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 
 {% block title_head %}
-Crear Paleta
+Editar Paleta
 {% endblock title_head %}
 
 {% block h1_header %}
-Crear Paleta
+Editar Paleta
 {% endblock h1_header %}
 
 {% block main %}
 
-<form action={% url "crear_paleta" %} method="POST">
+<form action={% url "editar_paleta" paleta.id%} method="POST">
     {% csrf_token %}
 
     {{form}}
 
-    <input type="submit" value="Crear">
+    <input type="submit" value="Actualizar">
 
 </form>
 

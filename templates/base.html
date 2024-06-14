@@ -26,13 +26,22 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href={% url "inicio" %}>Inicio</a>
-                <a class="navbar-brand" href={% url "probando" %}>Probando</a>
+                {% comment %} <a class="navbar-brand" href={% url "probando" %}>Probando</a> {% endcomment %}
                 {% comment %} V1 {% endcomment %}
                 {% comment %} <a class="navbar-brand" href={% url "crear_auto" "Fiat" "Duna"%}>Creacion Auto</a> {% endcomment %}
                 {% comment %} V2 {% endcomment %}
                 <a class="navbar-brand" href={% url "autos" %}>Autos</a>
                 <a class="navbar-brand" href={% url "paletas" %}>Paletas</a>
-                {% comment %} <a class="btn btn-primary" href="#signup">Sign Up</a> {% endcomment %}
+                {% if request.user.is_authenticated %}
+                <a class="navbar-brand" href="#">{{request.user.username}}</a>
+                    <form action={% url "logout" %} method="POST">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-secondary" value="Cerrar sesion">
+                    </form>
+                {% else %}
+                <a class="btn btn-primary" href={% url "login" %}>Iniciar Sesion</a>
+                <a class="btn btn-danger" href={% url "registro" %}>Registrarse</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->

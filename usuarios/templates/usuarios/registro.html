@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 
 {% block title_head %}
-Crear Paleta
+Registro
 {% endblock title_head %}
 
 {% block h1_header %}
-Crear Paleta
+Registro
 {% endblock h1_header %}
 
 {% block main %}
 
-<form action={% url "crear_paleta" %} method="POST">
+<form action={% url "registro" %} method="POST">
     {% csrf_token %}
 
-    {{form}}
+    {{formulario}}
 
-    <input type="submit" value="Crear">
+    <input type="submit" value="Registrarse">
 
 </form>
 
