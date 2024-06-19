@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import Paleta
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Paletas(ListView):
@@ -18,7 +19,7 @@ class CrearPaleta(CreateView):
     success_url = reverse_lazy('paletas')
     fields = ['marca', 'descripcion', 'fecha']
     
-class EditarPaleta(UpdateView):
+class EditarPaleta(LoginRequiredMixin, UpdateView):
     model = Paleta
     template_name = 'paletas/editar_paleta.html'
     success_url = reverse_lazy('paletas')
@@ -28,7 +29,7 @@ class VerPaleta(DetailView):
     model = Paleta
     template_name = 'paletas/ver_paleta.html'
     
-class EliminarPaleta(DeleteView):
+class EliminarPaleta(LoginRequiredMixin, DeleteView):
     model = Paleta
     template_name = "paletas/eliminar_paleta.html"
     success_url = reverse_lazy('paletas')

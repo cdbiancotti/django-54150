@@ -33,7 +33,7 @@
                 <a class="navbar-brand" href={% url "autos" %}>Autos</a>
                 <a class="navbar-brand" href={% url "paletas" %}>Paletas</a>
                 {% if request.user.is_authenticated %}
-                <a class="navbar-brand" href="#">{{request.user.username}}</a>
+                <a class="navbar-brand" href={% url "editar_perfil" %}>{{request.user.username}}</a>
                     <form action={% url "logout" %} method="POST">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-secondary" value="Cerrar sesion">
